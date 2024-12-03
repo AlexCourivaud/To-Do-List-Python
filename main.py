@@ -1,10 +1,10 @@
 import sys
 
-
-
 from views.list_view import ListView
 from PyQt6.QtWidgets import QApplication
-
+from repositories.list_repository import ListRepository
+from managers.list_manager import ListManager
+from controllers.list_controller import ListController
 
 if __name__ == "__main__":
 
@@ -12,11 +12,11 @@ if __name__ == "__main__":
 
     repo = ListRepository(host="localhost", database="library", user="myuser", password="mypassword")
     
-    manager = BookManager(repo)
+    manager = ListManager(repo)
 
-    view = BookView()
+    view = ListView()
     
-    controller = BookController(manager, view)
+    controller = ListController(manager, view)
 
     # Connecter les signaux et afficher la fenêtre
     view.connect_signals(controller)

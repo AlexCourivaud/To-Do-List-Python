@@ -1,7 +1,7 @@
-#import pyqt6
+# import PyQt6 
 from PyQt6.QtWidgets import ( QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QTableWidget, QTableWidgetItem, QMessageBox)
 
-from entities.list_entity import ListEntity
+# from entities.list_entity import ListEntity
 
 class ListView(QWidget):
     def __init__(self):
