@@ -17,5 +17,6 @@ if __name__ == "__main__":
     # Connecter les signaux et afficher la fenêtre
     view.connect_signals(controller)
     view.show()
+    controller.refresh_lists()
 
     sys.exit(app.exec())
