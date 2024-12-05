@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QApplication
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    repo = ListRepository(host="localhost", database="library", user="myuser", password="mypassword")
+    repo = ListRepository(host="localhost", database="listmanager", user="root", password="")
     manager = ListManager(repo)
     view = ListView()
     controller = ListController(manager, view)

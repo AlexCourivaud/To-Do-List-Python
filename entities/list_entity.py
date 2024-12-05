@@ -1,5 +1,5 @@
 class ListEntity:
-    def __init__(self, id=None, title=None, mark_as_done=None):
+    def __init__(self, id=None, title=None, mark_as_done=False):
         self.id = id
         self.title = title
         self.mark_as_done = mark_as_done
