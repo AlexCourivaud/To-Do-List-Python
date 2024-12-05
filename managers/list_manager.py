@@ -7,15 +7,15 @@ class ListManager:
         """
         self.repository = repository
 
-    def add_list(self, list_entity: ListEntity) -> ListEntity:
-        """
-        Ajoute un livre via le repository et retourne le livre avec son ID.
-        :return: ListEntity.
-        """
+    # def add_list(self, list_entity: ListEntity) -> ListEntity:
+    #     """
+    #     Ajoute un livre via le repository et retourne le livre avec son ID.
+    #     :return: ListEntity.
+    #     """
 
-        if (not list_entity.title == "" ):
+    #     if (not list_entity.title == "" ):
 
-            list_entity.id = self.repository.create(list_entity)
+    #         list_entity.id = self.repository.create(list_entity)
         
-        return list_entity
+    #     return list_entity
     
