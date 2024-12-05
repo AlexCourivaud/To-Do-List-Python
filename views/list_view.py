@@ -40,16 +40,16 @@ class ListView(QWidget):
         # Tableau pour afficher les tâches
         self.table = QTableWidget()
         self.table.setColumnCount(4)  # Ajout d'une colonne pour le bouton "Supprimer"
-        self.table.setHorizontalHeaderLabels(["Titre", "Statut", "Action", "Supprimer"])
+        self.table.setHorizontalHeaderLabels(["Titre", "Statut", "", ""])
 
         # Ajuster la taille du tableau
-        self.table.setFixedSize(800, 500)  # Définir une taille fixe pour le tableau
+        self.table.setFixedSize(700, 500)  # Définir une taille fixe pour le tableau
 
         # Ajuster la largeur des colonnes
         self.table.setColumnWidth(0, 300)  # Titre
-        self.table.setColumnWidth(1, 100)  # Marqué comme terminé
-        self.table.setColumnWidth(2, 150)  # Action
-        self.table.setColumnWidth(3, 150)  # Supprimer
+        self.table.setColumnWidth(1, 100)  # statut
+        self.table.setColumnWidth(2, 141)  # Action
+        self.table.setColumnWidth(3, 141)  # Supprimer
 
         self.layout.addLayout(self.form_layout)
         self.layout.addWidget(self.table)
