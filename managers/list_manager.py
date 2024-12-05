@@ -1,7 +1,7 @@
 from entities.list_entity import ListEntity
 
 class ListManager:
-    def __init(self, repository):
+    def __init__(self, repository):
         """
         Initialise le gestionnaire avec une instance de ListRepository.
         """

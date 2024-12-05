@@ -1,10 +1,11 @@
 import sys
 
-from views.list_view import ListView
-from PyQt6.QtWidgets import QApplication
-from repositories.list_repository import ListRepository
 from managers.list_manager import ListManager
+from repositories.list_repository import ListRepository
+from views.list_view import ListView
 from controllers.list_controller import ListController
+from PyQt5.QtWidgets import QApplication
+
 
 if __name__ == "__main__":
 
