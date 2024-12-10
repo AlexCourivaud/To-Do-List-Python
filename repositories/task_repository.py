@@ -1,8 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
-from entities.list_entity import ListEntity
+from entities.task_entity import TaskEntity
 
-class ListRepository:
+class TaskRepository:
     def __init__(self, host, database, user, password):
         try:
             self.connection = mysql.connector.connect(
@@ -20,14 +20,14 @@ class ListRepository:
             print(f"Erreur lors de la connexion à la base de données : {e}")
             self.connection = None
 
-    def create(self, list_entity) -> int:
+    def create(self, task_entity) -> int:
         """
         Insère une tâche dans la base de données et retourne l'ID généré.
-        :param list_entity: Instance de ListEntity contenant les données.
+        :param task_entity: Instance de TaskEntity contenant les données.
         :return: ID de la tâche créée.
         """
-        query = "INSERT INTO list (title, mark_as_done) VALUES (%s, %s)"
-        values = (list_entity.title, list_entity.mark_as_done)
+        query = "INSERT INTO task (title, mark_as_done) VALUES (%s, %s)"
+        values = (task_entity.title, task_entity.mark_as_done)
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, values)
@@ -39,64 +39,81 @@ class ListRepository:
 
     def read_all(self):
         """
-        Récupère toutes les tâches sous forme d'objets ListEntity.
-        :return: Liste d'instances de ListEntity.
+        Récupère toutes les tâches sous forme d'objets TaskEntity.
+        :return: Liste d'instances de TaskEntity.
         """
-        query = "SELECT * FROM list"
+        query = "SELECT * FROM task"
         try:
             cursor = self.connection.cursor(dictionary=True)
             cursor.execute(query)
-            lists = cursor.fetchall()
-            return [ListEntity(list["id"], list["title"], list["mark_as_done"]) for list in lists]
+            tasks = cursor.fetchall()
+            return [TaskEntity(task["id"], task["title"], task["mark_as_done"]) for task in tasks]
         except Error as e:
             print(f"Erreur lors de la récupération des tâches : {e}")
             return []
 
-    def read_by_id(self, list_id):
+    def read_by_id(self, task_id):
         """
         Récupère une tâche par son ID.
-        :param list_id: ID de la tâche.
-        :return: Instance de ListEntity ou None si non trouvé.
+        :param task_id: ID de la tâche.
+        :return: Instance de TaskEntity ou None si non trouvé.
         """
-        query = "SELECT * FROM list WHERE id = %s"
+        query = "SELECT * FROM task WHERE id = %s"
         try:
             cursor = self.connection.cursor(dictionary=True)
-            cursor.execute(query, (list_id,))
-            list = cursor.fetchone()
-            return ListEntity(
-                list["id"],
-                list["title"],
-                list["mark_as_done"]
-            ) if list else None
+            cursor.execute(query, (task_id,))
+            task = cursor.fetchone()
+            return TaskEntity(
+                task["id"],
+                task["title"],
+                task["mark_as_done"]
+            ) if task else None
         except Error as e:
             print(f"Erreur lors de la récupération de la tâche : {e}")
             return None
 
-    def delete(self, list_id):
+    def delete(self, task_id):
         """
         Supprime une tâche par son ID.
-        :param list_id: ID de la tâche.
+        :param task_id: ID de la tâche.
         :return: Booléen indiquant si la suppression a été effectuée.
         """
-        query = "DELETE FROM list WHERE id = %s"
+        query = "DELETE FROM task WHERE id = %s"
         try:
             cursor = self.connection.cursor()
-            cursor.execute(query, (list_id,))
+            cursor.execute(query, (task_id,))
             self.connection.commit()
             return cursor.rowcount > 0
         except Error as e:
             print(f"Erreur lors de la suppression de la tâche : {e}")
             return False
 
-    def update_mark_as_done(self, list_id, mark_as_done):
+    def update_mark_as_done(self, task_id, mark_as_done):
         """
         Met à jour l'état de mark_as_done pour une tâche.
-        :param list_id: ID de la tâche.
+        :param task_id: ID de la tâche.
         :param mark_as_done: Nouvel état de mark_as_done.
         :return: Booléen indiquant si la mise à jour a réussi.
         """
-        query = "UPDATE list SET mark_as_done = %s WHERE id = %s"
-        values = (mark_as_done, list_id)
+        query = "UPDATE task SET mark_as_done = %s WHERE id = %s"
+        values = (mark_as_done, task_id)
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query, values)
+            self.connection.commit()
+            return cursor.rowcount > 0
+        except Error as e:
+            print(f"Erreur lors de la mise à jour de la tâche : {e}")
+            return False
+
+    def update(self, task_entity: TaskEntity):
+        """
+        Met à jour une tâche dans la base de données.
+        :param task_entity: Instance de TaskEntity à mettre à jour.
+        :return: Booléen indiquant si la mise à jour a réussi.
+        """
+        query = "UPDATE task SET title = %s, mark_as_done = %s WHERE id = %s"
+        values = (task_entity.title, task_entity.mark_as_done, task_entity.id)
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, values)
