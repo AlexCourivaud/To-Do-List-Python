@@ -46,12 +46,12 @@ class TaskView(QWidget):
         self.table.setHorizontalHeaderLabels(["ID", " ", "Nom de la tâche", "Statut"])
 
         # Ajuster la taille du tableau
-        self.table.setFixedSize(800, 700)  # Définir une taille fixe pour le tableau
+        self.table.setFixedSize(680, 350)  # Définir une taille fixe pour le tableau
 
         # Ajuster la largeur des colonnes
         self.table.setColumnWidth(0, 0)  # ID (caché)
         self.table.setColumnWidth(1, 30)  # Sélection
-        self.table.setColumnWidth(2, 600)  # Nom
+        self.table.setColumnWidth(2, 500)  # Nom
         self.table.setColumnWidth(3, 100)  # Marqué comme terminé
 
         self.layout.addLayout(self.form_layout)
