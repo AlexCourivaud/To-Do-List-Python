@@ -1,17 +1,24 @@
-Todolist in python 
-with a model view and controller
-Front made with Pyqt6 
 
-Launching the program with python main.py
+Les instructions pour exécuter l'application.
+■ Les prérequis logiciels.
+■ Une description du projet.
 
-You can add a task on the task manager
-
-The task is automatically added to the DDB and in the list on the display window.
-
-You add click on the bouton mark as done to complete the task
-You can delete the task with a button
+To Do List in Python.
+Outils utilisé pour la réalisaiton :
+- Figma
+- PHPmyAdmin with MySQL
+- VsCode - avec PyQt6 pour le front
 
 
-TO DO :
+Documentations annexes : (Dossier z__documentation_annexe)
+ - script.SQL ✔
+ - to do list proto.PNG --  fait avec figma ✔
+ - MCD capture d'écran ✖ #TODO 
+ - diagramme explicatif de l'architecture logicielle ✖ #TODO
 
-Validator to protect the DB (BLL)
+Description du projet :
+C'est une To Do List avec persistence des données.
+Créer une tache
+Afficher les tâches ajoutées
+Sélectionner une tache ou plusieurs taches pour les supprimer ou les notés en effecutées
+
