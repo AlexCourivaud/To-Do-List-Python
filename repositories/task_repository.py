@@ -106,23 +106,6 @@ class TaskRepository:
             print(f"Erreur lors de la mise à jour de la tâche : {e}")
             return False
 
-    def update(self, task_entity: TaskEntity):
-        """
-        Met à jour une tâche dans la base de données.
-        :param task_entity: Instance de TaskEntity à mettre à jour.
-        :return: Booléen indiquant si la mise à jour a réussi.
-        """
-        query = "UPDATE task SET title = %s, mark_as_done = %s WHERE id = %s"
-        values = (task_entity.title, task_entity.mark_as_done, task_entity.id)
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute(query, values)
-            self.connection.commit()
-            return cursor.rowcount > 0
-        except Error as e:
-            print(f"Erreur lors de la mise à jour de la tâche : {e}")
-            return False
-
     def __del__(self):
         """
         Ferme la connexion à la base de données.

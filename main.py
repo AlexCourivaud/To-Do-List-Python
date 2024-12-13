@@ -9,10 +9,12 @@ from PyQt6.QtWidgets import QApplication
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-
     repo = TaskRepository(host="localhost", database="listmanager", user="root", password="")
+
     manager = TaskManager(repo)
+
     view = TaskView()
+
     controller = TaskController(manager, view)
 
     # Connecter les signaux et afficher la fenêtre

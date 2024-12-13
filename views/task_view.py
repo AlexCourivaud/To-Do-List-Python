@@ -48,11 +48,11 @@ class TaskView(QWidget):
         # Ajuster la taille du tableau
         self.table.setFixedSize(680, 350)  # Définir une taille fixe pour le tableau
 
-        # Ajuster la largeur des colonnes
-        self.table.setColumnWidth(0, 0)  # ID (caché)
-        self.table.setColumnWidth(1, 30)  # Sélection
-        self.table.setColumnWidth(2, 500)  # Nom
-        self.table.setColumnWidth(3, 100)  # Marqué comme terminé
+        # Ajuster la largeur des colonnes 0 = ID, 1 = Sélection, 2 = Nom, 3 = marqué comme terminé
+        self.table.setColumnWidth(0, 0)  
+        self.table.setColumnWidth(1, 30) 
+        self.table.setColumnWidth(2, 500) 
+        self.table.setColumnWidth(3, 100)
 
         self.layout.addLayout(self.form_layout)
         self.layout.addWidget(self.table)
